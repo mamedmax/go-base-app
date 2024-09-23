@@ -2,30 +2,36 @@ package handler
 
 import "net/http"
 
-func HelloHandler(w http.ResponseWriter, r *http.Request) {
+type Handler struct{}
+
+func NewHandler() *Handler {
+	return &Handler{}
+}
+
+func (h *Handler) HelloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello 👋🏻"))
 }
 
-func DefaultHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) DefaultHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("This is default handler"))
 }
 
-func FindItemById(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) FindItemById(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	w.Write([]byte("request for item: " + id))
 }
 
-func CreateItem(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) CreateItem(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	w.Write([]byte("request for create item: " + id))
 }
 
-func UpdateItemById(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) UpdateItemById(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	w.Write([]byte("request for update item: " + id))
 }
 
-func DeleteItemById(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) DeleteItemById(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	w.Write([]byte("request for delete item: " + id))
 }
