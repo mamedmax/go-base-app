@@ -14,3 +14,18 @@ func FindItemById(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	w.Write([]byte("request for item: " + id))
 }
+
+func CreateItem(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	w.Write([]byte("request for create item: " + id))
+}
+
+func UpdateItemById(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	w.Write([]byte("request for update item: " + id))
+}
+
+func DeleteItemById(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	w.Write([]byte("request for delete item: " + id))
+}

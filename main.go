@@ -10,7 +10,10 @@ func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", handler.HelloHandler)
-	router.HandleFunc("/item/{id}", handler.FindItemById)
+	router.HandleFunc("GET /item/{id}", handler.FindItemById)
+	router.HandleFunc("POST /item/{id}", handler.CreateItem)
+	router.HandleFunc("PUT /item/{id}", handler.UpdateItemById)
+	router.HandleFunc("DELETE /item/{id}", handler.DeleteItemById)
 
 	server := http.Server{
 		Addr:    ":8080",
