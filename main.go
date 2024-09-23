@@ -21,8 +21,14 @@ func main() {
 	v1 := http.NewServeMux()
 	v1.Handle("/v1/", http.StripPrefix("/v1/", router))
 
+	adminRouter := http.NewServeMux()
+	adminRouter.HandleFunc("GET /user/", reqHandler.DefaultHandler)
+
+	// router.Handle("/", middleware.EnsureAdmin(adminRouter))
+
 	stack := middleware.CreateStack(
 		middleware.Logging,
+		middleware.IsAuthenticated,
 	)
 
 	server := http.Server{

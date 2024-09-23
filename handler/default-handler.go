@@ -1,6 +1,10 @@
 package handler
 
-import "net/http"
+import (
+	"fmt"
+	"go-base-app/middleware"
+	"net/http"
+)
 
 type Handler struct{}
 
@@ -17,8 +21,15 @@ func (h *Handler) DefaultHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) FindItemById(w http.ResponseWriter, r *http.Request) {
+	userID, ok := r.Context().Value(middleware.AuthUserID).(string)
+	if !ok {
+		fmt.Println("Invalid user ID")
+		w.WriteHeader(http.StatusBadRequest)
+	}
+
 	id := r.PathValue("id")
-	w.Write([]byte("request for item: " + id))
+	fmt.Println("user ID: " + userID)
+	w.Write([]byte("request for item: " + id + " from userID: " + userID))
 }
 
 func (h *Handler) CreateItem(w http.ResponseWriter, r *http.Request) {
