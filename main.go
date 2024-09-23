@@ -10,7 +10,7 @@ func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", handler.HelloHandler)
-	router.HandleFunc("/item/", handler.DefaultHandler)
+	router.HandleFunc("/item/{id}", handler.FindItemById)
 
 	server := http.Server{
 		Addr:    ":8080",
