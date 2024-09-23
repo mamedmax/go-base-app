@@ -1,3 +1,3 @@
 # go-base-app
 
-My own go web app implementation
+My own implementation of web app in golang
